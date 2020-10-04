@@ -1,10 +1,11 @@
+# Exercise 1.6 Debugging
+# file: sears.py 
+# date: 2020-10-04
 
-# file: sears.py
-
-bill_thickness = 0.11 * 0.001 # meters (0.11 mm)
-sears_height = 442            # height in meters
-num_bills = 1
-day = 1
+bill_thickness = 0.11 * 0.001    # Meters (0.11 mm)
+sears_height   = 442             # Height (meters)
+num_bills      = 1
+day            = 1
 
 while num_bills * bill_thickness < sears_height:
     print(day, num_bills, num_bills * bill_thickness)
