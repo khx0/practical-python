@@ -1,6 +1,6 @@
 # mortgage.py
 #
-# Exercise 1.11
+# Exercise 1.17
 
 principal = 500000.0
 rate = 0.05
