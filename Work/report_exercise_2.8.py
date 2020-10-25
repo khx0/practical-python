@@ -62,3 +62,5 @@ old_total, new_total, diff_total = compute_loss(portfolio, prices, print_items =
 # print(f"Old Total:  {old_total:10.2f}")
 # print(f"New Total:  {new_total:10.2f}")
 # print(f"Difference: {diff_total:10.2f}")
+
+## TODO still working on exercise 2.8 to bring it into the format as specifiec by the exercise.
