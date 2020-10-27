@@ -1,6 +1,8 @@
 # report.py
 #
 # Exercise 2.9
+# Exercise 2.10
+# Exercise 2.11
 
 import csv
 
@@ -32,35 +34,32 @@ def read_portfolio(filename):
 
     return portfolio
 
-def compute_loss(portfolio, prices, print_items = False):
+def make_report(portfolio, prices):
 
-    old_total = 0.0
-    new_total = 0.0
-
-    print(f"{'Name':>10s} {'Shares':>10s} {'Price':>10s} {'Change':>10s}")
-    lstring = 10 * '-'
-    print(f"{lstring:>10s} {lstring:>10s} {lstring:>10s} {lstring:>10s}")
+    report = []
 
     for holding in portfolio:
-        old_value = holding['shares'] * holding['price']
-        new_value = holding['shares'] * prices[holding['name']]
-        diff = new_value - old_value
-        diff_price = prices[holding['name']] - holding['price']
-        if print_items:
-            print(f"{holding['name']:>10s} {holding['shares']:>10d} {prices[holding['name']]:>10.2f} {diff_price:>10.2f}")
-        old_total += old_value
-        new_total += new_value
+        new_price = prices[holding['name']]
+        change = new_price - holding['price']
+        holding = (holding['name'], holding['shares'], new_price, change)
+        report.append(holding)
 
-    diff_total = new_total - old_total
-    return old_total, new_total, diff_total
+    return report
 
-prices = read_prices('Data/prices.csv')
 portfolio = read_portfolio('Data/portfolio.csv')
+prices = read_prices('Data/prices.csv')
+report = make_report(portfolio, prices)
 
-old_total, new_total, diff_total = compute_loss(portfolio, prices, print_items = True)
+headers = ('Name', 'Shares', 'Price', 'Change')
+header_str = ' '.join([f'{h:>10s}' for h in headers])
+print(header_str)
+lstring = 10 * '-'
+print(f'{lstring:>10s} {lstring:>10s} {lstring:>10s} {lstring:>10s}')
 
-# print(f"Old Total:  {old_total:10.2f}")
-# print(f"New Total:  {new_total:10.2f}")
-# print(f"Difference: {diff_total:10.2f}")
+for name, shares, price, change in report:
+    price_str = f'${round(price, 2)}'
+    print(f'{name:>10s} {shares:>10d} {price_str:>10s} {change:>10.2f}')
 
-## TODO still working on exercise 2.8 to bring it into the format as specifiec by the exercise.
+# instead of creating the header string from a header tuple one
+# could also create it directly and explicitly like this
+# print(f"{'Name':>10s} {'Shares':>10s} {'Price':>10s} {'Change':>10s}")
