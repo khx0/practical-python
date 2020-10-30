@@ -1,4 +1,5 @@
-#o
+# pcost.py
+#
 # Exercise 2.15
 
 import sys
