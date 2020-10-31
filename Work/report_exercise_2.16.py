@@ -51,7 +51,7 @@ def make_report(portfolio, prices):
         change = current_price - holding['price']
         summary = (holding['name'], holding['shares'], current_price, change)
         rows.append(summary)
-    return report
+    return rows
 
 portfolio = read_portfolio('Data/portfolio.csv')
 prices = read_prices('Data/prices.csv')
