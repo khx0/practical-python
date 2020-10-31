@@ -6,7 +6,11 @@ import sys
 import csv
 
 def portfolio_cost(filename):
+    '''
+    Computes the total cost (shares*price) of a portfolio file
+    '''
     total_cost = 0.0
+
     with open(filename) as f:
         rows = csv.reader(f)
         header = next(rows)
@@ -28,4 +32,4 @@ else:
     filename = 'Data/portfoliodate.csv'
 
 cost = portfolio_cost(filename)
-print('Total cost:', cost)    
+print('Total cost:', cost)  
